@@ -16,28 +16,27 @@ router.post('/postForm', function(req, res, next) {
   let country = req.body.country;
 
   let argumentsArray = [name, category, goal, deadlineMonth, launchedMonth, pledgedAmount, backers, country]
-    
+  console.log(argumentsArray);
+
   // transform the array
   let transformPath = path.join('python', 'scripts', 'transformArray.py');
   let transformProcess = spawn("python", [transformPath, name, category, goal, deadlineMonth, launchedMonth, pledgedAmount, backers, country]);
 
   transformProcess.stdout.on('data', (data) => {
     // for now just send back the data
+    data = data.toString().trim();
     console.log("data = " + data);
-    res.send(data);
-    /*
-
+    
     // now that you have the dictionary of parameters call the predict  
     let predictPath = path.join('python', 'scripts', 'predict.py');
     let predictProcess = spawn("python", [predictPath, data]);
 
+    console.log([predictPath, data]);
+
     predictProcess.stdout.on('data', (predictData) => {
       console.log("predictData = " + predictData);
-      res.send(predictData);
+      res.json({"prediction" : parseInt(predictData)});
     });
-    */
-
-
   });  
 });
 
