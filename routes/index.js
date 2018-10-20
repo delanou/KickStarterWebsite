@@ -35,7 +35,8 @@ router.post('/postForm', function(req, res, next) {
 
     predictProcess.stdout.on('data', (predictData) => {
       console.log("predictData = " + predictData);
-      res.json({"prediction" : parseInt(predictData)});
+      //res.json({"prediction" : parseInt(predictData)});
+      res.send(predictData);
     });
   });  
 });

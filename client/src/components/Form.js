@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
-import {browserHistory} from 'react-router';
 
 const categoryOptions = [
     "Art", "Comics", "Crafts", "Dance", "Design", "Fashion", "Film & Video", 
@@ -16,7 +15,7 @@ const countryOptions = [
 ]
 
 const months = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"
 ]
 
 class Form extends Component {
@@ -93,18 +92,24 @@ class Form extends Component {
                 'Content-Type': 'application/json',
             }
         }).then(function(response){
+            console.log("got response");
             return response.json();
         }).then((prediction) => {
+            
+            console.log(prediction);
+            console.log(prediction["probability"]);
+            
             let result = prediction["prediction"] ;
-            console.log(result);        
-            if (result === 0) {
-                // redirect to fail component  
-                this.props.history.push("/Fail");
-            }
-            else {
-                // redirect to pass component
-                this.props.history.push("/Pass");
-            }
+            let probability = prediction["probability"];
+            
+            this.props.history.push({
+                pathname: "/ResultPage",
+                state: {
+                    prediction: result,
+                    probability: probability,
+                }
+            });
+
             return 0;
         }).catch(function(error) {
             console.log('There has been a problem with your fetch operation: ', error.message);
@@ -113,24 +118,67 @@ class Form extends Component {
 
     render() {
         return(
+            
             <form onSubmit={this.handleSubmit}>
-                <label> Name <input value={this.state.name} onChange={this.handleNameChange} name="Name" type="text" required></input></label>
-                <br/>
-                <label> Category </label><Dropdown options={categoryOptions} onChange={this.handleCategoryChange} value={this.state.category} placeholder="Select an option" />
-                <br/>
-                <label> Goal <input value={this.state.goal} onChange={this.handleGoalChange} values={this.state.goal} name="Goal" type='number' required></input></label>
-                <br/>
-                <label> Deadline Month </label><Dropdown options={months} onChange={this.handleDeadlineMonthChange} value={this.state.deadlineMonth} placeholder="Select an option" />
-                <br/>
-                <label> Launched Month </label><Dropdown options={months} onChange={this.handleLaunchedMonthChange} value={this.state.launchedMonth} placeholder="Select an option" />
-                <br/>
-                <label> Pledged Amount <input value={this.state.pledgedAmount} onChange={this.handlePledgedAmountChange} values={this.state.pledgedAmount} name="PledgedAmount" type='number' required></input></label>
-                <br/>
-                <label> Backers <input value={this.state.backers} onChange={this.handleBackersChange} value={this.state.backers} name="author" type='number' required></input></label>
-                <br/>
-                <label> Country  </label><Dropdown options={countryOptions} onChange={this.handleCountryChange} value={this.state.country} placeholder="Select an option" />
-                <br/>
-                <input type="submit" value="Submit" />
+            
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Name</label>
+                    <div class="col-10">
+                        <input value={this.state.name} onChange={this.handleNameChange} type="text" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label"> Category </label>
+                    <div class="col-10">
+                        <Dropdown class="form-control" options={categoryOptions} onChange={this.handleCategoryChange} value={this.state.category} placeholder="Select an option" />
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Goal</label>
+                    <div class="col-10">
+                        <input class="form-control" value={this.state.goal} onChange={this.handleGoalChange} values={this.state.goal} name="Goal" type='number' required></input>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-2 col-form-label"> Deadline Month </label>
+                    <div class="col-10">
+                        <Dropdown class="form-control" options={months} onChange={this.handleDeadlineMonthChange} value={this.state.deadlineMonth} placeholder="Select an option" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label"> Launched Month </label>
+                    <div class="col-10">
+                        <Dropdown class="form-control" options={months} onChange={this.handleLaunchedMonthChange} value={this.state.launchedMonth} placeholder="Select an option" />
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label class="col-2 col-form-label"> Pledged Amount </label>    
+                    <div class="col-10">
+                        <input class="form-control" value={this.state.pledgedAmount} onChange={this.handlePledgedAmountChange} values={this.state.pledgedAmount} name="PledgedAmount" type='number' required></input>
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label class="col-2 col-form-label"> Backers </label>
+                    <div class="col-10">
+                        <input class="form-control" value={this.state.backers} onChange={this.handleBackersChange} value={this.state.backers} name="author" type='number' required></input>
+                    </div> 
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Country</label>
+                    <div class="col-10">
+                        <Dropdown class="form-control" options={countryOptions} onChange={this.handleCountryChange} value={this.state.country} placeholder="Select an option" />
+                    </div>
+                </div>
+                
+                <input type="submit" value="Submit" class="btn btn-lg btn-secondary" />
+
             </form>
         );
     }
