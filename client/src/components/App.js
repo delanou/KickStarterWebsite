@@ -8,10 +8,10 @@ import {Link, Switch, Route} from 'react-router-dom';
 
 const Home = () => (
   <div>
-    <Link exact to="/Form"><a href="#" class="btn btn-lg btn-secondary">Fill out Project Manually</a></Link>
+    <Link exact to="/Form"><a href="#" className="btn btn-lg btn-secondary">Fill out Project Manually</a></Link>
     <br/>
     <br/>
-    <Link href="#" class="btn btn-lg btn-secondary" exact to="/ProjectLink">Link to Existing Project</Link>
+    <Link href="#" className="btn btn-lg btn-secondary" exact to="/ProjectLink">Link to Existing Project</Link>
   </div>
 );
 
@@ -27,14 +27,14 @@ const Main = () => (
 class App extends Component {
   render() {
     return (
-          <div class="text-center">
+          <div className="text-center">
 
             <link href="../stylesheets/cover.css" rel="stylesheet"></link>
             
-            <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-              <main role="main" class="inner cover">
-                <h1 class="cover-heading">KickStarter Prediction</h1>
-                <p class="lead"> This project aims to provide a prediction service
+            <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
+              <main role="main" className="inner cover">
+                <h1 className="cover-heading">KickStarter Prediction</h1>
+                <p className="lead"> This project aims to provide a prediction service
                 for current KickStarter projects.</p>
               </main>
             </div>

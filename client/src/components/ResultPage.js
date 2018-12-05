@@ -18,10 +18,10 @@ class ResultPage extends Component {
 
     componentDidMount() {
         /* Change the source of the image to include based of the prediction field */
-        let source = '../images/thumbs-up-circle.jpg';
+        let source = '../images/transparent_up.png';
 
         if (this.state.prediction === 0) {
-            source = '../images/thumbs-down-circle.jpg';
+            source = '../images/transparent_down.png';
         }
 
         this.setState({imageSource: source});
@@ -31,7 +31,7 @@ class ResultPage extends Component {
         return(
             <div>
                 <h1>Confidence: {this.state.probability}%</h1>
-                <img alt="thumbs up" src={require('../images/thumbs-up-circle.jpg')} />
+                <img alt="thumbs up" style={{width: '300px', height: '300px'}} src={this.state.imageSource} />
             </div>
         );
     }

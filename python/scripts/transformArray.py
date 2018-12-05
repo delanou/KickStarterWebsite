@@ -1,6 +1,7 @@
 import sys
 import json
 import os
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # gather arguments
@@ -63,7 +64,7 @@ result = {
 """
 
 
-result = f"{numericalCategory}, {goal}, {pledgedAmount}, {backers}, {numericalCountry}, {numericalSentiment}, {deadlineMonth}, {launchedMonth}"
+result = ",".join([str(numericalCategory), str(goal), str(pledgedAmount), str(backers), str(numericalCountry), str(numericalSentiment), str(deadlineMonth), str(launchedMonth)])
 
 # CONVERT FROM PYTHON DICTIONARY TO JSON STRING!!!!!!!!!!!
 #resultString = json.dumps(result)

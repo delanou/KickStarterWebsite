@@ -20,7 +20,7 @@ router.post('/postForm', function(req, res, next) {
 
   // transform the array
   let transformPath = path.join('python', 'scripts', 'transformArray.py');
-  let transformProcess = spawn("python", [transformPath, name, category, goal, deadlineMonth, launchedMonth, pledgedAmount, backers, country]);
+  let transformProcess = spawn("python3", [transformPath, name, category, goal, deadlineMonth, launchedMonth, pledgedAmount, backers, country]);
 
   transformProcess.stdout.on('data', (data) => {
     // for now just send back the data
@@ -29,7 +29,7 @@ router.post('/postForm', function(req, res, next) {
     
     // now that you have the dictionary of parameters call the predict  
     let predictPath = path.join('python', 'scripts', 'predict.py');
-    let predictProcess = spawn("python", [predictPath, data]);
+    let predictProcess = spawn("python3", [predictPath, data]);
 
     console.log([predictPath, data]);
 
@@ -38,7 +38,20 @@ router.post('/postForm', function(req, res, next) {
       //res.json({"prediction" : parseInt(predictData)});
       res.send(predictData);
     });
+
+    predictProcess.stderr.on('data', (data) => {
+      // As said before, convert the Uint8Array to a readable string.
+    console.log(data.toString('utf8'));
+    });
   });  
+
+
+  transformProcess.stderr.on('data', (data) => {
+    // As said before, convert the Uint8Array to a readable string.
+    console.log(data.toString('utf8'));
+  });
+
+  
 });
 
 module.exports = router;
