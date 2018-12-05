@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import '../stylesheets/App.css';
-import Form from './Form';
-import ResultPage from "./ResultPage";
-import ProjectLink from './ProjectLink';
+import './App.css';
+import Form from './components/Form';
+import ResultPage from "./components/ResultPage";
+import ProjectLink from './components/ProjectLink';
 import {Link, Switch, Route} from 'react-router-dom';
 
 
 const Home = () => (
   <div>
-    <Link exact to="/Form"><a href="#" className="btn btn-lg btn-secondary">Fill out Project Manually</a></Link>
+    <Link href="#" className="btn btn-lg btn-secondary" to="/Form">Fill out Project Manually</Link>
     <br/>
     <br/>
-    <Link href="#" className="btn btn-lg btn-secondary" exact to="/ProjectLink">Link to Existing Project</Link>
+    <Link href="#" className="btn btn-lg btn-secondary" to="/ProjectLink">Link to Existing Project</Link>
   </div>
 );
 
@@ -24,12 +24,11 @@ const Main = () => (
   </Switch>
 );
 
+//<link href="../stylesheets/cover.css" rel="stylesheet"></link>
 class App extends Component {
   render() {
     return (
           <div className="text-center">
-
-            <link href="../stylesheets/cover.css" rel="stylesheet"></link>
             
             <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
               <main role="main" className="inner cover">

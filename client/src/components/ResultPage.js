@@ -18,13 +18,14 @@ class ResultPage extends Component {
 
     componentDidMount() {
         /* Change the source of the image to include based of the prediction field */
-        let source = '../images/transparent_up.png';
+        let source = './assets/transparent_up.png';
 
         if (this.state.prediction === 0) {
-            source = '../images/transparent_down.png';
+            source = './assets/transparent_down.png';
         }
-
+        
         this.setState({imageSource: source});
+
     }
 
     render() {

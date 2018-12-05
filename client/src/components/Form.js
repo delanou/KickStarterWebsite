@@ -170,60 +170,116 @@ class Form extends Component {
                     <div className="form-group row">
                         <label className="col-2 col-form-label">Name</label>
                         <div className="col-10">
-                            <input value={this.state.name} onChange={this.handleNameChange} type="text" className="form-control" style={{textAlign:"center"}} required/>
+                            <input
+                                value={this.state.name} 
+                                onChange={this.handleNameChange} 
+                                type="text" 
+                                className="form-control" 
+                                style={{textAlign:"center"}} 
+                                required
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label"> Category </label>
                         <div className="col-10">
-                            <Dropdown className="form-control" options={categoryOptions} onChange={this.handleCategoryChange} value={this.state.category} placeholder="Select an option" />
+                            <Dropdown 
+                                className="form-control" 
+                                options={categoryOptions} 
+                                onChange={this.handleCategoryChange} 
+                                value={this.state.category} 
+                                placeholder="Select an option" />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label">Goal</label>
                         <div className="col-10">
-                            <input className="form-control" value={this.state.goal} onChange={this.handleGoalChange} values={this.state.goal} name="Goal" type='number' style={{textAlign:"center"}} required></input>
+                            <input 
+                                className="form-control" 
+                                value={this.state.goal} 
+                                onChange={this.handleGoalChange} 
+                                name="Goal" 
+                                type='number' 
+                                style={{textAlign:"center"}} 
+                                required
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label"> Deadline Month </label>
                         <div className="col-10">
-                            <Dropdown className="form-control" options={months} onChange={this.handleDeadlineMonthChange} value={this.state.deadlineMonth} placeholder="Select an option" />
+                            <Dropdown 
+                                className="form-control" 
+                                options={months} 
+                                onChange={this.handleDeadlineMonthChange} 
+                                value={this.state.deadlineMonth} 
+                                placeholder="Select an option" />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label"> Launched Month </label>
                         <div className="col-10">
-                            <Dropdown className="form-control" options={months} onChange={this.handleLaunchedMonthChange} value={this.state.launchedMonth} placeholder="Select an option" />
+                            <Dropdown 
+                                className="form-control" 
+                                options={months} 
+                                onChange={this.handleLaunchedMonthChange} 
+                                value={this.state.launchedMonth} 
+                                placeholder="Select an option" />
                         </div>
                     </div>
 
                     <div className="form-group row" >
                         <label className="col-2 col-form-label"> Pledged Amount </label>    
                         <div className="col-10">
-                            <input className="form-control"  value={this.state.pledgedAmount} onChange={this.handlePledgedAmountChange} values={this.state.pledgedAmount} name="PledgedAmount" type='number' style={{textAlign:"center"}} required></input>
+                            <input 
+                                className="form-control"  
+                                value={this.state.pledgedAmount} 
+                                onChange={this.handlePledgedAmountChange} 
+                                name="PledgedAmount" 
+                                type='number' 
+                                style={{textAlign:"center"}} 
+                                required
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label"> Backers </label>
                         <div className="col-10">
-                            <input className="form-control" value={this.state.backers} onChange={this.handleBackersChange} value={this.state.backers} name="author" type='number' style={{textAlign:"center"}} required></input>
+                            <input 
+                                className="form-control" 
+                                value={this.state.backers} 
+                                onChange={this.handleBackersChange} 
+                                name="author" 
+                                type='number' 
+                                style={{textAlign:"center"}} 
+                                required
+                            />
                         </div> 
                     </div>
 
                     <div className="form-group row">
                         <label className="col-2 col-form-label">Country</label>
                         <div className="col-10">
-                            <Dropdown className="form-control" options={countryOptions} onChange={this.handleCountryChange} value={this.state.country} placeholder="Select an option" />
+                            <Dropdown 
+                                className="form-control" 
+                                options={countryOptions} 
+                                onChange={this.handleCountryChange} 
+                                value={this.state.country} 
+                                placeholder="Select an option" />
                         </div>
                     </div>
 
-                    <input type="submit" value="Submit" className="btn btn-lg btn-secondary" />
+                    <input  
+                        type="submit" 
+                        value="Submit" 
+                        className="btn btn-lg btn-secondary"
+                    />
+                       
                 </form>
             </div>
         );
