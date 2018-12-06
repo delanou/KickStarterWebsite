@@ -63,7 +63,7 @@ router.post('/postForm', function(req, res, next) {
           
           // type(predictData) = json string
           // save result in redis
-          client.set(argumentsArray, predictData, redis.print);
+          client.set(argumentsString, predictData, redis.print);
 
           res.send(predictData);
         });
